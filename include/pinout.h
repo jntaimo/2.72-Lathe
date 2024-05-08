@@ -11,7 +11,12 @@
 #define IN7 8
 #define IN8 9
 
-#define SWITCH_PIN 12
+//SCK - 13
+//MISO - 11
+//MOSI - 12
+//display pins
+#define CS  
+#define SWITCH_PIN A1
 #define KNOB_PIN A0
 
 #endif
