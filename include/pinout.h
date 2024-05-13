@@ -41,7 +41,7 @@
 //relay pins
 #define RELAY_PIN DIR1
 #define SWITCH_PIN DIR2
-#define CNC_LED POT_3_PIN
+#define CNC_LED PWM2
 #define ENC_A_PIN LEFT_ENCODER_A_PIN
 #define ENC_B_PIN LEFT_ENCODER_B_PIN
 #define SPINDLE_IN_PIN POT_1_PIN

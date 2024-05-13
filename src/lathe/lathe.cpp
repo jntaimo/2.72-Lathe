@@ -40,6 +40,7 @@ void setup(){
     //display configuration
     tft.setTextWrap(false);
     tft.setTextColor(ST77XX_WHITE, ST77XX_BLACK);
+    analogReadResolution(10);
 }
 
 void loop(){
@@ -66,10 +67,10 @@ void loop(){
             //read the analog spindle speed
             inputDuty = overSamplePot(SPINDLE_IN_PIN, 10);
             //Scale the input duty cycle to the output duty cycle
-            outputDuty = constrain(inputDuty * 1.0, 0,1);;
+            outputDuty = constrain(inputDuty * 1.0, 0,1);
             //write the spindle speed to the spindle output
-            int ouputPPM = mapDouble(outputDuty, 0, 1, MIN_PPM_ANGLE, MAX_PPM_ANGLE);
-            spindle.write(SPINDLE_OUT_PIN, ouputPPM);
+            int outputPPM = mapDouble(outputDuty, 0, 1, MIN_PPM_ANGLE, MAX_PPM_ANGLE);
+            spindle.write(SPINDLE_OUT_PIN, outputPPM);
 
     
         } else {
@@ -97,6 +98,8 @@ void loop(){
             float encAngle = encoder.getPosition();
             encAngle = constrain(encAngle, 0, MAX_ENC_ANGLE);
             outputDuty = mapDouble(encAngle, 0, MAX_ENC_ANGLE, 0.0, 1.0);
+            int outputPPM = mapDouble(outputDuty, 0, 1, MIN_PPM_ANGLE, MAX_PPM_ANGLE);
+            spindle.write(SPINDLE_OUT_PIN, outputPPM);
         }        
     }
     EVERY_N_MILLIS(DISPLAY_DELAY_MILLIS){
